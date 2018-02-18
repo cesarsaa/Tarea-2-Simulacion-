@@ -242,7 +242,7 @@ sample(baraja,5,F)
 #------------------------Punto8------------------------#
 b = pi/4                                
 a = 0      
-integral = (b-a)*mean(log(1+(tan(runif(1000000, min=a, max=b)))^2)) 
+integral = (b-a)*mean(log(1+(tan(runif(100000, min=a, max=b)))^2)) 
 integral
 
 
