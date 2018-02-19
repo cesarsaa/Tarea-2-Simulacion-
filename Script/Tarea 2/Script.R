@@ -51,7 +51,7 @@ for (i in 1:nsim){
   total=total*((366-i)/365)
   prob[i] <- 1-total
   plot(prob, xlab="Numero de Personas en la Habitacion", ylab="Probabilidad", 
-       main="Paradoja del Cumpleanos", pch=18, type="b", col="royalblue4")
+       main="Paradoja del Cumpleanos", pch=18, type="b", col="royalblue4", bty="n", cex=2)
 }
 print(prob)
 
@@ -102,6 +102,19 @@ length(duplicated(a))
 sum(duplicated(a))
 
 #---Situacion B---#
+Habitaciones<-10                                  
+Parejas<-0                                        
+igual<-matrix(0,ncol=2, nrow=Habitaciones)        
+
+for(i in 1:Habitaciones){                    
+  cump<-sample(1:365,25,replace=TRUE)            
+  igual[i,1]<-i                               
+  
+  igual[i,2]<- sum(duplicated.matrix(as.matrix(cump)))
+  if(igual[i,2]>=1){Parejas<-Parejas+1}              
+}
+pr<-Parejas/Habitaciones                        
+pr
 
 #------------------------Punto5------------------------#
 #---Situacion A---#
@@ -150,8 +163,7 @@ for (j in 1:sim3){
   }
   conteo3[j]=total
 }
-
-#par(mfrow=c(3,1))
+par(mfrow=c(1,3))
 plot(conteo1, pch=10, col="royalblue4" ,main="Lanzamiento de 3 Dados para 10 Simulaciones", 
      xlab="Numero de Lanzamientos", ylab="Cantindad de '6' obtenidos", bty="n", cex=2)
 plot(conteo2, pch=10, col="royalblue4", main="Lanzamiento de 3 Dados para 100 Simulaciones", 
@@ -164,66 +176,111 @@ plot(conteo3, pch=10, col="royalblue4", main="Lanzamiento de 3 Dados para 1000 S
 Nsim1=100
 matriz1=matrix(200)
 for(i in 1:Nsim1){
-  dbinom=dbinom(i,100,0.1)
+  dbinom=dbinom(i,100,0.3)
   matriz1[i]=dbinom
-  plot(matriz1, main="Binomial (100, 0.1)", xlab="Numero de Simulaciones", ylab="", pch=18, col="royalblue4", bty="n", cex=2, type="b")}
+}
+matriz2=matrix(200)
 for(i in 1:Nsim1){
-  dbinom=dbinom(i,100,0.9)
-  matriz1[i]=dbinom
-  plot(matriz1, main="Binomial (100, 0.9)", xlab="Numero de Simulaciones", ylab="", pch=18, col="royalblue4", bty="n", cex=2, type="s")}
+  dbinom=dbinom(i,200,0.6)
+  matriz2[i]=dbinom
+}
+par(mfrow=c(1,2))
+barplot(matriz1, main="Binomial", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+barplot(matriz2, main="Binomial", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
 
 #---Poisson---#
 Nsim2=100
-matriz2=matrix(200)
+matriz3=matrix(200)
 for(j in 1:Nsim2){
   dpois1=dpois(j,lambda=10)
-  matriz2[j]=dpois1
-  plot(matriz2, main="Poisson para Lambda=10", xlab="Numero de Simulaciones", ylab="", pch=18, col="royalblue4", bty="n", cex=2, type="b")}
+  matriz3[j]=dpois1
+}
+matriz4=matrix(200)
 for(j in 1:Nsim2){
   dpois3=dpois(j,lambda=30)
-  matriz2[j]=dpois3
-  plot(matriz2, main="Poisson para Lambda=30", xlab="Numero de Simulaciones", ylab="", pch=18, col="tomato4", bty="n", cex=2, type="b")}
+  matriz4[j]=dpois3
+}
+par(mfrow=c(1,2))
+barplot(matriz3, main="Poisson", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+barplot(matriz4, main="Poisson", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
 
 #---Hipergeometrica---#
 Nsim3=100
-matriz3=matrix(200)
+matriz4=matrix(200)
 for(i in 1:Nsim3){
   dhypher=dhyper(i,90,10,5)
-  matriz3[i]=dhyper
-  plot(matriz3)}
+  matriz4[i]=dhyper
+}
+matriz5=matrix(200)
 for(i in 1:Nsim3){
   dhypher=dhyper(i,70,30,5)
-  matriz3[i]=dhyper
-  plot(matriz3)}
+  matriz5[i]=dhyper
+}
+par(mfrow=c(1,2))
+barplot(matriz4, main="Hipergeometrica", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+barplot(matriz5, main="Hipergeometrica", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
 
 #---Binomial Negativa---#
 Nsim4=100
-matriz4=matrix(200)
-
+matriz6=matrix(200)
 for(i in 1:Nsim4){
-  dnbinom=dnbinom(i,100,0.2)
-  matriz4[i]=dnbinom
-  plot(matriz4)}
+  dnbinom=dnbinom(i,100,0.5)
+  matriz6[i]=dnbinom
+}
+matriz7=matrix(200)
 for(i in 1:Nsim4){
   dnbinom=dnbinom(i,100,0.8)
-  matriz4[i]=dnbinom
-  plot(matriz4)}
+  matriz7[i]=dnbinom
+}
+par(mfrow=c(1,2))
+barplot(matriz6, main="Binomial Negativa", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+barplot(matriz7, main="Binomial Negativa", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
 
 #---Normal---#
 Nsim5=100
-matriz5=matrix(200)
+matriz8=matrix(200)
 for(i in 1:Nsim5){
   dnorm=dnorm(i,50,5)
-  matriz5[i]=dnorm
-  plot(matriz5)}
+  matriz8[i]=dnorm
+}
+matriz9=matrix(200)
 for(i in 1:Nsim5){
-  dnorm=dnorm(i,100,5)
-  matriz5[i]=dnorm
-  plot(matriz5)}
-
+  dnorm=dnorm(i,10,6)
+  matriz9[i]=dnorm
+}
+par(mfrow=c(1,2))
+barplot(matriz8, main="Normal", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+barplot(matriz9, main="Normal", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
 #---Gamma---#
-
+Nsim6=100
+matriz10=matrix(200)
+for(i in 1:Nsim6){
+  dgamma=dgamma(i, 3,1/12.4)
+  matriz10[i]=dgamma
+}
+matriz11=matrix(200)
+for(i in 1:Nsim6){
+  dgamma=dgamma(i, 8,1/6.5)
+  matriz11[i]=dgamma
+}
+par(mfrow=c(1,2))
+barplot(matriz10, main="Gamma", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+barplot(matriz11, main="Gamma", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
 #---Weibull---#
+Nsim9=100
+matriz12=matrix(200)
+for(i in 1:Nsim9){
+  dweibull=dweibull(i, 3, 12.4)
+  matriz12[i]=dweibull
+}
+matriz13=matrix(200)
+for(i in 1:Nsim9){
+  dweibull=dweibull(i, 20, 15)
+  matriz13[i]=dweibull
+}
+par(mfrow=c(1,2))
+barplot(matriz12, main="Gamma", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+barplot(matriz13, main="Gamma", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
 
 #------------------------Punto7------------------------#
 #---Situacion A---#
