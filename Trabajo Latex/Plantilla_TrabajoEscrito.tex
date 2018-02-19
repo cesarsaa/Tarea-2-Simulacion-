@@ -161,8 +161,7 @@ Choose Realiza la combinatoria de las distintas formas en las que se puede selec
 \end{figure}
 ~\\ Para la simulación del lanzamiento de los dados se puede observar mediante la gráfica, como la probabilidad de obtener los 3 seises es muy pequeña pues es de 0.02 con lo que es puede asegurar que las ganancias al ser proporcionales al numero de 6 que obtenga el jugador no serán las mejores. 
 
-\section{Situación 6}
-\pagebreak\section{Situación 7}
+\section{Situación 7}
 ~\begin{itemize}
 \item\textbf {Parte A:} Mediante la función choose se puede calcular por combinatoria la probabilidad de que un juego de póquer no tenga Aces, dicho resultado obtenido por medio de tecnicas de probabilidad  fue de 0.658842. 
 \item\textbf {Parte B:} 
@@ -175,16 +174,63 @@ Se Utiliza el método de integración aproximado Monte Carlo para estimar
 Para ello se crearon variables aleatoria con la distribución uniforme ,ya que este método de integración solo es valido para muestras aleatorias, pues este método son algoritmos para encontrar una evaluación aproximada de una integral definida. 
 La precisión del método se mejora utilizando una gran cantidad de simulaciones para este caso se uso un n=1000000 de manera que como resultado se obtuvo un valor de 0.1729043 
 ~\\Mientras que el realizar la integral sin variables aleatorias me arroja el siguiente resultado 0.172827 por lo anterior se puede decir que el método de integración de Montecarlo me arrojo un resultado más exacto.
-\pagebreak\section{Scripts}
 
+\section{Situación 6}
+~\\ Al realizar la simulación para cada una de las distribuciones mencionadas, se observa como al cambiar el valor del parametro de referencia la grafica se va moviendo, haciéndose mas ancha y decreciendo. 
+\begin{figure}[!h]
+    \begin{center}
+        \includegraphics[width=10cm]{Figuras/Rplot61.png}
+        \caption{Simulación para las variables aleatorias Binomial y Poisson}
+        \label{fig:Densidad}
+    \end{center}
+\end{figure}
+\begin{figure}[!h]
+    \begin{center}
+        \includegraphics[width=10cm]{Figuras/Rplot62.png}
+        \caption{Simulación para las variables aleatorias Binomial Negativa y Normal}
+        \label{fig:Densidad}
+    \end{center}
+\end{figure}
+\begin{figure}[!h]
+    \begin{center}
+        \includegraphics[width=10cm]{Figuras/Rplot63.png}
+        \caption{Simulación para las variables aleatorias Gamma y Weibull}
+        \label{fig:Densidad}
+    \end{center}
+\end{figure}
+
+\begin{figure}[!h]
+    \begin{center}
+        \includegraphics[width=13cm]{Figuras/Rplot71.png}
+        \caption{Simulación para las variables aleatorias Binomial, Poisson y Binomial Negativa}
+        \label{fig:Densidad}
+    \end{center}
+\end{figure}
+\begin{figure}[!h]
+    \begin{center}
+        \includegraphics[width=13cm]{Figuras/Rplot72.png}
+        \caption{Simulación para las variables aleatorias Normal, Gamma y Weibull}
+        \label{fig:Densidad}
+    \end{center}
+\end{figure}
+
+\section{Bibliografia}
+~\begin{itemize}
+\item\textbf {B. P. Demidowitsch. I. A. Maron, E. S. Schuwalowa. Métodos numéricos de análisis. Editorial Paraninfo (1980)}
+\item\textbf { http://www.bdigital.unal.edu.co/4748/2/nelcyyazminninoalfonso.2011.parte2.pdf}
+\item\textbf { https://www.uam.es/personalpdi/ciencias/carlosp/html/pid/montecarlo.html}
+\item\textbf { http://www.estadisticaparatodos.es/taller/cumpleanos/cumpleanos.html}
+\end{itemize}
+
+\pagebreak\section{Scripts}
 \begin{verbatim}
 
-#------------------------------------------------------#
+#-----------------------------------------------------------#
 # Diana Carolina Arias Cod. 1528008
 # Cesar Andres Saavedra Cod. 1628466
 # Simulacion Estadistica
 # Tarea No. 2
-#------------------------------------------------------#
+#-----------------------------------------------------------#
 ########################################################
 ########################################################
 #------------------------Punto1------------------------#
@@ -364,10 +410,6 @@ for(i in 1:Nsim1){
   dbinom=dbinom(i,200,0.6)
   matriz2[i]=dbinom
 }
-par(mfrow=c(1,2))
-barplot(matriz1, main="Binomial", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
-barplot(matriz2, main="Binomial", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
-
 #---Poisson---#
 Nsim2=100
 matriz3=matrix(200)
@@ -380,25 +422,11 @@ for(j in 1:Nsim2){
   dpois3=dpois(j,lambda=30)
   matriz4[j]=dpois3
 }
-par(mfrow=c(1,2))
-barplot(matriz3, main="Poisson", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
-barplot(matriz4, main="Poisson", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
-
-#---Hipergeometrica---#
-Nsim3=100
-matriz4=matrix(200)
-for(i in 1:Nsim3){
-  dhypher=dhyper(i,90,10,5)
-  matriz4[i]=dhyper
-}
-matriz5=matrix(200)
-for(i in 1:Nsim3){
-  dhypher=dhyper(i,70,30,5)
-  matriz5[i]=dhyper
-}
-par(mfrow=c(1,2))
-barplot(matriz4, main="Hipergeometrica", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
-barplot(matriz5, main="Hipergeometrica", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+par(mfrow=c(2,2))
+barplot(matriz1, main="Binomial (100,0.3)", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+barplot(matriz2, main="Binomial (200,0.6)", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+barplot(matriz3, main="Poisson Lambda 10", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+barplot(matriz4, main="Poisson Lambda 30", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
 
 #---Binomial Negativa---#
 Nsim4=100
@@ -413,9 +441,6 @@ for(i in 1:Nsim4){
   matriz7[i]=dnbinom
 }
 par(mfrow=c(1,2))
-barplot(matriz6, main="Binomial Negativa", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
-barplot(matriz7, main="Binomial Negativa", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
-
 #---Normal---#
 Nsim5=100
 matriz8=matrix(200)
@@ -428,9 +453,13 @@ for(i in 1:Nsim5){
   dnorm=dnorm(i,10,6)
   matriz9[i]=dnorm
 }
-par(mfrow=c(1,2))
-barplot(matriz8, main="Normal", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
-barplot(matriz9, main="Normal", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+par(mfrow=c(2,2))
+barplot(matriz6, main="Binomial Negativa (100,0.5)", xlab="Numero de Simulaciones", ylab="", 
+col="royalblue4")
+barplot(matriz7, main="Binomial Negativa (100,0.8)", xlab="Numero de Simulaciones", ylab="", 
+col="royalblue4")
+barplot(matriz8, main="Normal (50,5)", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+barplot(matriz9, main="Normal (10,6)", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
 #---Gamma---#
 Nsim6=100
 matriz10=matrix(200)
@@ -444,8 +473,6 @@ for(i in 1:Nsim6){
   matriz11[i]=dgamma
 }
 par(mfrow=c(1,2))
-barplot(matriz10, main="Gamma", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
-barplot(matriz11, main="Gamma", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
 #---Weibull---#
 Nsim9=100
 matriz12=matrix(200)
@@ -458,9 +485,101 @@ for(i in 1:Nsim9){
   dweibull=dweibull(i, 20, 15)
   matriz13[i]=dweibull
 }
-par(mfrow=c(1,2))
-barplot(matriz12, main="Gamma", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
-barplot(matriz13, main="Gamma", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+par(mfrow=c(2,2))
+barplot(matriz10, main="Gamma (3,1/12.4)", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+barplot(matriz11, main="Gamma (8,1/6.5)", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+barplot(matriz12, main="Weibull (3,12.4)", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+barplot(matriz13, main="Weibull (20,15)", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+#-------------------------------------------------------------------------------------------#
+#---Binomial---#
+Nsim1=100
+matriz1=matrix(200)
+for(i in 1:Nsim1){
+  pbinom=pbinom(i,100,0.3)
+  matriz1[i]=pbinom
+}
+matriz2=matrix(200)
+for(i in 1:Nsim1){
+  pbinom=pbinom(i,200,0.6)
+  matriz2[i]=pbinom
+}
+#---Poisson---#
+Nsim2=100
+matriz3=matrix(200)
+for(j in 1:Nsim2){
+  ppois1=ppois(j,lambda=10)
+  matriz3[j]=ppois1
+}
+matriz4=matrix(200)
+for(j in 1:Nsim2){
+  ppois3=ppois(j,lambda=30)
+  matriz4[j]=ppois3
+}
+#---Binomial Negativa---#
+Nsim4=100
+matriz6=matrix(200)
+for(i in 1:Nsim4){
+  pnbinom=pnbinom(i,100,0.5)
+  matriz6[i]=pnbinom
+}
+matriz7=matrix(200)
+for(i in 1:Nsim4){
+  pnbinom=pnbinom(i,100,0.8)
+  matriz7[i]=pnbinom
+}
+par(mfrow=c(3,2))
+plot(matriz1, main="Binomial", xlab="Numero de Simulaciones", ylab="", col="royalblue4", type="s", pch=9)
+plot(matriz2, main="Binomial", xlab="Numero de Simulaciones", ylab="", col="royalblue4", type="s", pch=9)
+plot(matriz3, main="Poisson", xlab="Numero de Simulaciones", ylab="", col="royalblue4", type="s", pch=9)
+plot(matriz4, main="Poisson", xlab="Numero de Simulaciones", ylab="", col="royalblue4", type="s", pch=9)
+plot(matriz6, main="Binomial Negativa", xlab="Numero de Simulaciones", ylab="", 
+col="royalblue4", type="s", pch=9)
+plot(matriz7, main="Binomial Negativa", xlab="Numero de Simulaciones", ylab="",
+ col="royalblue4", type="s", pch=9)
+#---Normal---#
+Nsim5=100
+matriz8=matrix(200)
+for(i in 1:Nsim5){
+  pnorm=pnorm(i,50,5)
+  matriz8[i]=pnorm
+}
+matriz9=matrix(200)
+for(i in 1:Nsim5){
+  pnorm=pnorm(i,10,6)
+  matriz9[i]=pnorm
+}
+#---Gamma---#
+Nsim6=100
+matriz10=matrix(200)
+for(i in 1:Nsim6){
+  pgamma=pgamma(i, 3,1/12.4)
+  matriz10[i]=pgamma
+}
+matriz11=matrix(200)
+for(i in 1:Nsim6){
+  pgamma=pgamma(i, 8,1/6.5)
+  matriz11[i]=pgamma
+}
+
+#---Weibull---#
+Nsim9=100
+matriz12=matrix(200)
+for(i in 1:Nsim9){
+  pweibull=pweibull(i, 3, 12.4)
+  matriz12[i]=pweibull
+}
+matriz13=matrix(200)
+for(i in 1:Nsim9){
+  pweibull=pweibull(i, 20, 15)
+  matriz13[i]=pweibull
+}
+par(mfrow=c(3,2))
+plot(matriz8, main="Normal", xlab="Numero de Simulaciones", ylab="", col="royalblue4", type="s", pch=9)
+plot(matriz9, main="Normal", xlab="Numero de Simulaciones", ylab="", col="royalblue4", type="s", pch=9)
+plot(matriz10, main="Gamma", xlab="Numero de Simulaciones", ylab="", col="royalblue4", type="s", pch=9)
+plot(matriz11, main="Gamma", xlab="Numero de Simulaciones", ylab="", col="royalblue4", type="s", pch=9)
+plot(matriz12, main="Weibull", xlab="Numero de Simulaciones", ylab="", col="royalblue4", type="s", pch=9)
+plot(matriz13, main="Weibull", xlab="Numero de Simulaciones", ylab="", col="royalblue4", type="s", pch=9)
 
 #------------------------Punto7------------------------#
 #---Situacion A---#
@@ -471,7 +590,8 @@ pro <- SinAs/Combinaciones
 #---Situacion B---#
 baraja <- c('AC','AD','AP','AT','2C','2D','2P','2T','3C','3D','3P','3T','4C','4D','4P','4T',
             '5C','5D','5P','5T','6C','6D','6P','6T','7C','7D','7P','7T','8C','8D','8P','8T',
-            '9C','9D','9P','9T','10C','10D','10P','10T','JC','JD','JP','JT','KC','KD','KP','KT','QC','QD','QP','QT')
+            '9C','9D','9P','9T','10C','10D','10P','10T','JC','JD','JP','JT',
+            'KC','KD','KP','KT','QC','QD','QP','QT')
 sample(baraja,5,F)
 
 
@@ -481,6 +601,7 @@ b = pi/4
 a = 0      
 integral = (b-a)*mean(log(1+(tan(runif(100000, min=a, max=b)))^2)) 
 integral
+#-----------------------------------------------------------#
 \end{verbatim}
 
 \end{document}

@@ -72,7 +72,7 @@ for(i in 1:25){
 }
 matrix
 print(asfd)
-
+plot(asfd)
 #------------------------Punto3------------------------#
 #---Situacion A---#
 sample(1:100,5)
@@ -184,10 +184,6 @@ for(i in 1:Nsim1){
   dbinom=dbinom(i,200,0.6)
   matriz2[i]=dbinom
 }
-par(mfrow=c(1,2))
-barplot(matriz1, main="Binomial", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
-barplot(matriz2, main="Binomial", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
-
 #---Poisson---#
 Nsim2=100
 matriz3=matrix(200)
@@ -200,25 +196,11 @@ for(j in 1:Nsim2){
   dpois3=dpois(j,lambda=30)
   matriz4[j]=dpois3
 }
-par(mfrow=c(1,2))
-barplot(matriz3, main="Poisson", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
-barplot(matriz4, main="Poisson", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
-
-#---Hipergeometrica---#
-Nsim3=100
-matriz4=matrix(200)
-for(i in 1:Nsim3){
-  dhypher=dhyper(i,90,10,5)
-  matriz4[i]=dhyper
-}
-matriz5=matrix(200)
-for(i in 1:Nsim3){
-  dhypher=dhyper(i,70,30,5)
-  matriz5[i]=dhyper
-}
-par(mfrow=c(1,2))
-barplot(matriz4, main="Hipergeometrica", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
-barplot(matriz5, main="Hipergeometrica", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+par(mfrow=c(2,2))
+barplot(matriz1, main="Binomial (100,0.3)", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+barplot(matriz2, main="Binomial (200,0.6)", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+barplot(matriz3, main="Poisson Lambda 10", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+barplot(matriz4, main="Poisson Lambda 30", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
 
 #---Binomial Negativa---#
 Nsim4=100
@@ -233,9 +215,6 @@ for(i in 1:Nsim4){
   matriz7[i]=dnbinom
 }
 par(mfrow=c(1,2))
-barplot(matriz6, main="Binomial Negativa", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
-barplot(matriz7, main="Binomial Negativa", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
-
 #---Normal---#
 Nsim5=100
 matriz8=matrix(200)
@@ -248,9 +227,11 @@ for(i in 1:Nsim5){
   dnorm=dnorm(i,10,6)
   matriz9[i]=dnorm
 }
-par(mfrow=c(1,2))
-barplot(matriz8, main="Normal", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
-barplot(matriz9, main="Normal", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+par(mfrow=c(2,2))
+barplot(matriz6, main="Binomial Negativa (100,0.5)", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+barplot(matriz7, main="Binomial Negativa (100,0.8)", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+barplot(matriz8, main="Normal (50,5)", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+barplot(matriz9, main="Normal (10,6)", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
 #---Gamma---#
 Nsim6=100
 matriz10=matrix(200)
@@ -264,8 +245,6 @@ for(i in 1:Nsim6){
   matriz11[i]=dgamma
 }
 par(mfrow=c(1,2))
-barplot(matriz10, main="Gamma", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
-barplot(matriz11, main="Gamma", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
 #---Weibull---#
 Nsim9=100
 matriz12=matrix(200)
@@ -278,9 +257,99 @@ for(i in 1:Nsim9){
   dweibull=dweibull(i, 20, 15)
   matriz13[i]=dweibull
 }
-par(mfrow=c(1,2))
-barplot(matriz12, main="Gamma", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
-barplot(matriz13, main="Gamma", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+par(mfrow=c(2,2))
+barplot(matriz10, main="Gamma (3,1/12.4)", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+barplot(matriz11, main="Gamma (8,1/6.5)", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+barplot(matriz12, main="Weibull (3,12.4)", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+barplot(matriz13, main="Weibull (20,15)", xlab="Numero de Simulaciones", ylab="", col="royalblue4")
+#-------------------------------------------------------------------------------------------#
+#---Binomial---#
+Nsim1=100
+matriz1=matrix(200)
+for(i in 1:Nsim1){
+  pbinom=pbinom(i,100,0.3)
+  matriz1[i]=pbinom
+}
+matriz2=matrix(200)
+for(i in 1:Nsim1){
+  pbinom=pbinom(i,200,0.6)
+  matriz2[i]=pbinom
+}
+#---Poisson---#
+Nsim2=100
+matriz3=matrix(200)
+for(j in 1:Nsim2){
+  ppois1=ppois(j,lambda=10)
+  matriz3[j]=ppois1
+}
+matriz4=matrix(200)
+for(j in 1:Nsim2){
+  ppois3=ppois(j,lambda=30)
+  matriz4[j]=ppois3
+}
+#---Binomial Negativa---#
+Nsim4=100
+matriz6=matrix(200)
+for(i in 1:Nsim4){
+  pnbinom=pnbinom(i,100,0.5)
+  matriz6[i]=pnbinom
+}
+matriz7=matrix(200)
+for(i in 1:Nsim4){
+  pnbinom=pnbinom(i,100,0.8)
+  matriz7[i]=pnbinom
+}
+par(mfrow=c(3,2))
+plot(matriz1, main="Binomial", xlab="Numero de Simulaciones", ylab="", col="royalblue4", type="s", pch=9)
+plot(matriz2, main="Binomial", xlab="Numero de Simulaciones", ylab="", col="royalblue4", type="s", pch=9)
+plot(matriz3, main="Poisson", xlab="Numero de Simulaciones", ylab="", col="royalblue4", type="s", pch=9)
+plot(matriz4, main="Poisson", xlab="Numero de Simulaciones", ylab="", col="royalblue4", type="s", pch=9)
+plot(matriz6, main="Binomial Negativa", xlab="Numero de Simulaciones", ylab="", col="royalblue4", type="s", pch=9)
+plot(matriz7, main="Binomial Negativa", xlab="Numero de Simulaciones", ylab="", col="royalblue4", type="s", pch=9)
+#---Normal---#
+Nsim5=100
+matriz8=matrix(200)
+for(i in 1:Nsim5){
+  pnorm=pnorm(i,50,5)
+  matriz8[i]=pnorm
+}
+matriz9=matrix(200)
+for(i in 1:Nsim5){
+  pnorm=pnorm(i,10,6)
+  matriz9[i]=pnorm
+}
+#---Gamma---#
+Nsim6=100
+matriz10=matrix(200)
+for(i in 1:Nsim6){
+  pgamma=pgamma(i, 3,1/12.4)
+  matriz10[i]=pgamma
+}
+matriz11=matrix(200)
+for(i in 1:Nsim6){
+  pgamma=pgamma(i, 8,1/6.5)
+  matriz11[i]=pgamma
+}
+
+#---Weibull---#
+Nsim9=100
+matriz12=matrix(200)
+for(i in 1:Nsim9){
+  pweibull=pweibull(i, 3, 12.4)
+  matriz12[i]=pweibull
+}
+matriz13=matrix(200)
+for(i in 1:Nsim9){
+  pweibull=pweibull(i, 20, 15)
+  matriz13[i]=pweibull
+}
+par(mfrow=c(3,2))
+plot(matriz8, main="Normal", xlab="Numero de Simulaciones", ylab="", col="royalblue4", type="s", pch=9)
+plot(matriz9, main="Normal", xlab="Numero de Simulaciones", ylab="", col="royalblue4", type="s", pch=9)
+plot(matriz10, main="Gamma", xlab="Numero de Simulaciones", ylab="", col="royalblue4", type="s", pch=9)
+plot(matriz11, main="Gamma", xlab="Numero de Simulaciones", ylab="", col="royalblue4", type="s", pch=9)
+plot(matriz12, main="Weibull", xlab="Numero de Simulaciones", ylab="", col="royalblue4", type="s", pch=9)
+plot(matriz13, main="Weibull", xlab="Numero de Simulaciones", ylab="", col="royalblue4", type="s", pch=9)
 
 #------------------------Punto7------------------------#
 #---Situacion A---#
